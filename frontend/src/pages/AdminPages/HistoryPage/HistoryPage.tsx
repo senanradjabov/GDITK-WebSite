@@ -54,7 +54,7 @@ const HistoryPage: React.FC = () => {
     request
       .then(() => {
         message.success("Saved successfully!");
-        navigate("/history");
+        navigate("/admin/history");
       })
       .catch((error) => {
         message.error(`Failed to save. \n${error}`);

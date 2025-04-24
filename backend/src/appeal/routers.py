@@ -1,7 +1,7 @@
+from datetime import datetime, timedelta
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Form, Query
-
+from fastapi import APIRouter, Depends, Form, HTTPException, Query, Request, status
 from src.appeal.repository import AppealRepository
 from src.appeal.schemas import AppealPaginatedResponse, AppealResponse
 from src.exceptions import FacultyNotFind, StaffNotFind
@@ -9,6 +9,10 @@ from src.users.dependencies import get_current_moder_user
 from src.users.schemas import UserBase
 
 router = APIRouter(prefix="/appeal", tags=["Appeal"])
+
+rate_limit_cache = {}
+
+LIMIT_DURATION = timedelta(minutes=10)
 
 
 @router.get("/all")
@@ -50,13 +54,30 @@ async def get_appeal_by_slug(
 
 @router.post("/add")
 async def adding_faculty(
+    request: Request,
     first_name: Annotated[str, Form()],
     last_name: Annotated[str, Form()],
     phone: Annotated[str, Form()],
     email: Annotated[str, Form()],
     message: Annotated[str, Form()],
 ):
-    appeal: AppealResponse = await AppealRepository.insert_data(
+    ip = request.client.host
+
+    now = datetime.utcnow()
+    last_access = rate_limit_cache.get(ip)
+
+    if last_access and now - last_access < LIMIT_DURATION:
+        seconds_left = int((LIMIT_DURATION - (now - last_access)).total_seconds())
+        raise HTTPException(
+            status_code=status.HTTP_429_TOO_MANY_REQUESTS,
+            detail=f"Too many requests. Try again in {seconds_left} seconds.",
+        )
+
+    # Сохраняем текущее время как последнее обращение
+    rate_limit_cache[ip] = now
+
+    # Здесь ваша логика вставки в БД
+    appeal = await AppealRepository.insert_data(
         first_name=first_name,
         last_name=last_name,
         phone=phone,

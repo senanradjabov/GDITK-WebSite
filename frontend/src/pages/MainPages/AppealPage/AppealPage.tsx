@@ -25,9 +25,10 @@ const FormContainer = styled.div`
     color: #000;
   }
 `;
+// ...импорты остаются без изменений
 
 const AppealPage: React.FC = () => {
-  const [form] = Form.useForm(); // создаём экземпляр формы
+  const [form] = Form.useForm();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values: {
@@ -52,7 +53,7 @@ const AppealPage: React.FC = () => {
       });
 
       message.success("Müraciət uğurla göndərildi!");
-      form.resetFields(); // очищаем поля формы
+      form.resetFields();
     } catch (error) {
       console.log(error);
       message.error("Müraciət göndərərkən səhv oldu.");
@@ -70,6 +71,11 @@ const AppealPage: React.FC = () => {
       <FormContainer>
         <div className="form-wrapper">
           <h2>Müraciət</h2>
+
+          <div style={{ marginBottom: "16px", color: "#d48806", fontWeight: "500" }}>
+            Qeyd: Eyni şəxs yalnız 10 dəqiqədən bir müraciət edə bilər.
+          </div>
+
           <Form
             form={form}
             layout="vertical"
@@ -83,19 +89,11 @@ const AppealPage: React.FC = () => {
               message: "",
             }}
           >
-            <Form.Item
-              label="Ad"
-              name="firstName"
-              rules={[{ required: true, message: "Adınızı qeyd edin" }]}
-            >
+            <Form.Item label="Ad" name="firstName" rules={[{ required: true, message: "Adınızı qeyd edin" }]}>
               <Input placeholder="Adınızı qeyd edin" />
             </Form.Item>
 
-            <Form.Item
-              label="Soyad"
-              name="lastName"
-              rules={[{ required: true, message: "Soyadınızı qeyd edin" }]}
-            >
+            <Form.Item label="Soyad" name="lastName" rules={[{ required: true, message: "Soyadınızı qeyd edin" }]}>
               <Input placeholder="Soyadınızı qeyd edin" />
             </Form.Item>
 
@@ -116,8 +114,7 @@ const AppealPage: React.FC = () => {
               rules={[
                 { required: true, message: "Əlaqə nömrəsini qeyd edin" },
                 {
-                  pattern:
-                    /^(?:\+994\s?|0)(50|51|55|70|77)\s?\d{3}\s?\d{2}\s?\d{2}$/,
+                  pattern: /^(?:\+994\s?|0)(50|51|55|70|77)\s?\d{3}\s?\d{2}\s?\d{2}$/,
                   message: "Əlaqə nömrəsini duz qeyd edin",
                 },
               ]}
@@ -125,11 +122,7 @@ const AppealPage: React.FC = () => {
               <Input placeholder="+994 (00) 123-45-67" />
             </Form.Item>
 
-            <Form.Item
-              label="Müraciətiniz"
-              name="message"
-              rules={[{ required: true, message: "Müraciətinizi yazın" }]}
-            >
+            <Form.Item label="Müraciətiniz" name="message" rules={[{ required: true, message: "Müraciətinizi yazın" }]}>
               <Input.TextArea rows={4} placeholder="Müraciətinizi yazın" />
             </Form.Item>
 

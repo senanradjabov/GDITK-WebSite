@@ -2,9 +2,8 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 import uvicorn
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-
 from src.appeal.routers import router as appeal_router
 from src.documents.router import router as doc_router
 from src.faculty.routers import router as faculty_router
@@ -15,6 +14,7 @@ from src.schedules.router import router as schedules_router
 from src.specialties.router import router as specialties_router
 from src.start import start
 from src.universty.routers import router as uni_router
+from src.users.dependencies import get_current_admin_user
 from src.users.routers import router as auth_router
 
 
@@ -24,7 +24,14 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
     yield
 
 
-app = FastAPI(lifespan=lifespan, root_path="/api")
+app = FastAPI(
+    lifespan=lifespan,
+    root_path="/api",
+    # docs_url=None,  # отключает Swagger UI (/docs)
+    # redoc_url=None,  # отключает ReDoc (/redoc)
+    # openapi_url=None,  # отключает OpenAPI JSON (/openapi.json)
+    dependencies=[Depends(get_current_admin_user)],
+)
 
 origins = [
     "http://localhost",

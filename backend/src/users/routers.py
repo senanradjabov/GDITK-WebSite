@@ -2,7 +2,6 @@ from datetime import timedelta
 from typing import Annotated
 
 from fastapi import APIRouter, Depends, Request, Response
-
 from src.config import settings
 from src.core.limiter import limiter
 from src.exceptions import UserAlreadyExistsException, UserNotFound

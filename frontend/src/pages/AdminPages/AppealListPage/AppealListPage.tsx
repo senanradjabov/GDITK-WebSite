@@ -1,5 +1,5 @@
 import { HeaderSelf, Title } from "./styled";
-import { Table, Space } from "antd";
+import { Table, Space, Button } from "antd";
 import { EditOutlined } from "@ant-design/icons";
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
@@ -86,12 +86,37 @@ const AppealListPage: React.FC = () => {
     fetchData(1, 10);
   }, []);
 
+  const deleteAllHandler = async () => {
+    try {
+      await api
+        .delete<ResponseData>(`/appeal/delete-all`, {
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        })
+        .then(() => {
+          window.location.reload();
+        });
+    } catch (error) {
+      console.error("Ошибка:", error);
+    }
+  }
+
   return (
     <>
       <HeaderSelf>
         <Title>Müraciət</Title>
-      </HeaderSelf>
 
+        <Button
+          type="primary"
+          size="large"
+          onClick={deleteAllHandler}
+        >
+          HamsInI Sil
+        </Button>
+      </HeaderSelf>
       <Table<DataType>
         loading={loading}
         columns={columns}

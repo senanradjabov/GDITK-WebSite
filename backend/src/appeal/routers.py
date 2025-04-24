@@ -98,3 +98,13 @@ async def delete_slid_for_main_page_slider(
         raise StaffNotFind
 
     await AppealRepository.delete_data(id=slug)
+
+
+@router.delete("/delete-all")
+async def delete_slid_for_main_page_slider(
+    user: Annotated[UserBase, Depends(get_current_moder_user)],
+):
+    appeals: list[AppealResponse] = await AppealRepository.find_all()
+
+    for appeal in appeals:
+        await AppealRepository.delete_data(id=appeal.id)

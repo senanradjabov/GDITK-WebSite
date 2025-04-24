@@ -1,8 +1,10 @@
 from datetime import timedelta
 from typing import Annotated
 
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Request, Response
+
 from src.config import settings
+from src.core.limiter import limiter
 from src.exceptions import UserAlreadyExistsException, UserNotFound
 from src.users.auth import authenticate_user, create_jwt_token
 from src.users.dependencies import get_current_admin_user, get_current_user
@@ -57,7 +59,10 @@ async def read_users(
 
 
 @router.post("/login")
-async def login_user(response: Response, user_data: UserAuthForm) -> UserAuthResponse:
+@limiter.limit("5/minute")
+async def login_user(
+    request: Request, response: Response, user_data: UserAuthForm
+) -> UserAuthResponse:
     user: UserBase = await authenticate_user(
         username=user_data.username, password=user_data.password
     )

@@ -2,9 +2,12 @@ from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
 import uvicorn
-from fastapi import Depends, FastAPI
+from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from slowapi.middleware import SlowAPIMiddleware
+
 from src.appeal.routers import router as appeal_router
+from src.core.limiter import limiter
 from src.documents.router import router as doc_router
 from src.faculty.routers import router as faculty_router
 from src.gallery.routers import router as gallery_router
@@ -14,7 +17,6 @@ from src.schedules.router import router as schedules_router
 from src.specialties.router import router as specialties_router
 from src.start import start
 from src.universty.routers import router as uni_router
-from src.users.dependencies import get_current_admin_user
 from src.users.routers import router as auth_router
 
 
@@ -31,6 +33,9 @@ app = FastAPI(
     redoc_url=None,  # отключает ReDoc (/redoc)
     openapi_url=None,  # отключает OpenAPI JSON (/openapi.json)
 )
+
+app.state.limiter = limiter
+app.add_middleware(SlowAPIMiddleware)
 
 origins = [
     "http://localhost",

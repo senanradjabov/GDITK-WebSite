@@ -4,7 +4,6 @@ from typing import Annotated
 import jwt
 from fastapi import Depends, Request
 from jwt.exceptions import InvalidTokenError
-
 from src.config import settings
 from src.exceptions import (
     CredentialsException,

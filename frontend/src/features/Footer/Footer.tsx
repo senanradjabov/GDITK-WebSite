@@ -54,7 +54,7 @@ const Footer: React.FC = () => {
       <BottomBlock>
         <Container>
           <BottomBlockSelf>
-            <Label>Bütün hüquqlar qorunur © 2024 GDITK</Label>
+            <Label>Bütün hüquqlar qorunur © 2025 GDITK</Label>
           </BottomBlockSelf>
         </Container>
       </BottomBlock>

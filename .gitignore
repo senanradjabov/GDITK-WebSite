@@ -92,4 +92,8 @@ cython_debug/
 DNK-logo.png
 *.webp
 *.env
-backend/src/static/documents
+backend/src/static/documents/*
+backend/src/static/images/*
+
+!backend/src/static/documents/.gitkeep
+!backend/src/static/images/.gitkeep

@@ -13,7 +13,7 @@ import {
   MobileHeaderSelf,
 } from "./styled";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import { Drawer, Button } from "antd";
 import { MenuOutlined } from "@ant-design/icons";
@@ -30,6 +30,8 @@ import Social from "@/components/MainComponents/Social";
 import LogoImage from "@/assets/images/logo.png";
 import MobileMenu from "@/components/MainComponents/MobileMenu";
 import SearchModal from "@/components/MainComponents/Search";
+
+import api from "@/services/request";
 
 const StyledDrawer = styled(Drawer)`
   .ant-drawer-body {
@@ -53,10 +55,61 @@ const MobileMenuBtns = styled.div`
   gap: 10px;
 `;
 
+interface NavigationItem {
+  label: string;
+  link?: string;
+  children?: NavigationItem[];
+}
+
+interface DepartmentData {
+  name: string;
+  slug: string;
+}
+
+const initialMenuItems: NavigationItem[] = [
+  { label: "Ana səhifə", link: "/" },
+  { label: "İdarəetmə", link: "/management" },
+  { label: "Xəbərlər", link: "/news" },
+  { label: "Kollecin Tarixi", link: "/history" },
+  { label: "Şöbələr", children: [] },
+  { label: "İxtisaslar", link: "/specialties" },
+  {
+    label: "AyrI",
+    children: [
+      { label: "Dərs cədvəlləri", link: "/schedule" },
+      { label: "Sənədlər", link: "/documents" },
+    ],
+  },
+];
+
 const Header: React.FC = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
   const [searchVisible, setSearchVisible] = useState<boolean>(false);
+  const [menuItems, setMenuItems] = useState(initialMenuItems);
+
+  const fetchManagementData = async () => {
+    try {
+      const response = await api.get(`/department`);
+
+      const newChildren = response.data.map((item: DepartmentData) => ({
+        label: item.name,
+        link: `/department/${item.slug}`,
+      }));
+
+      setMenuItems((prev) => {
+        const updatedMenu = [...prev];
+        updatedMenu[4] = { ...updatedMenu[4], children: newChildren };
+        return updatedMenu;
+      });
+    } catch (error) {
+      console.error("Error fetching management data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchManagementData();
+  }, []);
 
   return (
     <>
@@ -78,7 +131,7 @@ const Header: React.FC = () => {
           open={open}
           width="100vw"
         >
-          <MobileMenu handleClose={handleClose} />
+          <MobileMenu handleClose={handleClose} menuItems={menuItems} />
 
           <FooterLinks>
             <Social />
@@ -132,7 +185,7 @@ const Header: React.FC = () => {
 
             <BottomBlock>
               <Logo src={LogoImage} />
-              <Navbar />
+              <Navbar menuItems={menuItems} />
             </BottomBlock>
           </InnerWrapper>
         </Container>

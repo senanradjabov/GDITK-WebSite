@@ -51,11 +51,11 @@ const columns: ColumnsType<DataType> = [
   },
 ];
 
-const GallerySliderListPage: React.FC = () => {
+const CooperationListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const addHandler = () => {
-    navigate(`${adminPaths.cooperation}/add`);
+    navigate(`/admin/${adminPaths.cooperation}/add`);
   };
 
   const [dataSource, setDataSource] = useState<DataType[]>([]);
@@ -109,4 +109,4 @@ const GallerySliderListPage: React.FC = () => {
   );
 };
 
-export default GallerySliderListPage;
+export default CooperationListPage;

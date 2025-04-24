@@ -42,7 +42,7 @@ const ManagementListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const addHandler = () => {
-    navigate(`${adminPaths.manage}/add`);
+    navigate(`/admin/${adminPaths.manage}/add`);
   };
 
   const [dataLSource, setDataLSource] = useState<DataType[]>([]);

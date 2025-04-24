@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
-import api from "@/services/request"; // Замените на ваш API сервис
+
 import "./style.css";
 
 interface NavigationItem {
@@ -8,22 +8,6 @@ interface NavigationItem {
   link?: string;
   children?: NavigationItem[];
 }
-
-const initialMenuItems: NavigationItem[] = [
-  { label: "Ana səhifə", link: "/" },
-  { label: "İdarəetmə", link: "/management" },
-  { label: "Xəbərlər", link: "/news" },
-  { label: "Kollecin Tarixi", link: "/history" },
-  { label: "Şöbələr", children: [] },
-  { label: "İxtisaslar", link: "/specialties" },
-  {
-    label: "AyrI",
-    children: [
-      { label: "Dərs cədvəlləri", link: "/schedule" },
-      { label: "Sənədlər", link: "/documents" },
-    ],
-  },
-];
 
 const MenuItems: React.FC<{ items: NavigationItem; depthLevel: number }> = ({
   items,
@@ -101,32 +85,7 @@ const Dropdown: React.FC<{
   );
 };
 
-const Navbar = () => {
-  const [menuItems, setMenuItems] = useState(initialMenuItems);
-
-  const fetchManagementData = async () => {
-    try {
-      const response = await api.get(`/department`); // Замените на ваш endpoint
-
-      const newChildren = response.data.map((item: any) => ({
-        label: item.name,
-        link: `/department/${item.slug}`,
-      }));
-
-      setMenuItems((prev) => {
-        const updatedMenu = [...prev];
-        updatedMenu[4] = { ...updatedMenu[4], children: newChildren };
-        return updatedMenu;
-      });
-    } catch (error) {
-      console.error("Error fetching management data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchManagementData();
-  }, []);
-
+const Navbar: React.FC<{ menuItems: NavigationItem[] }> = ({ menuItems }) => {
   return (
     <nav className="main-nav">
       <ul className="menus">

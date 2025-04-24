@@ -44,7 +44,7 @@ const DepartmentListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const addHandler = () => {
-    navigate(`${adminPaths.department}/add`);
+    navigate(`/admin/${adminPaths.department}/add`);
   };
 
   const [dataSource, setDataSource] = useState<DataType[]>([]);

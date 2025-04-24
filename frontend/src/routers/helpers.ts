@@ -22,7 +22,6 @@ export const adminPaths: { [k: string]: string } = {
   gallerySlider: "gallery/slider",
   cooperation: "gallery/cooperation",
   newsList: "news",
-  newsAdd: "news/add",
   department: "department",
   staff: "staff",
   manage: "management",

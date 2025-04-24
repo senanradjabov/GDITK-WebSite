@@ -48,7 +48,7 @@ const ScheduleListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const addHandler = () => {
-    navigate(`${adminPaths.schedule}/add`);
+    navigate(`/admin/${adminPaths.schedule}/add`);
   };
 
   const [dataSource, setDataSource] = useState<DataType[]>([]);

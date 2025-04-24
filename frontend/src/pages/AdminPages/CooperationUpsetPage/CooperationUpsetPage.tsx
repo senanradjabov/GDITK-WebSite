@@ -21,7 +21,7 @@ const updateUrl = (slug: string) => `${adminPaths.cooperation}/update/${slug}`;
 const deleteUrl = (slug: string) => `${adminPaths.cooperation}/delete/${slug}`;
 const addUrl = `${adminPaths.cooperation}/add`;
 
-const GallerySliderUpsetPage: React.FC = () => {
+const CooperationUpsetPage: React.FC = () => {
   const { slugId } = useParams<{ slugId?: string }>();
   const navigate = useNavigate();
 
@@ -177,4 +177,4 @@ const GallerySliderUpsetPage: React.FC = () => {
   );
 };
 
-export default GallerySliderUpsetPage;
+export default CooperationUpsetPage;

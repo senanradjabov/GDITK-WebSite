@@ -28,7 +28,6 @@ router = APIRouter(prefix="", tags=["Department & Staff"])
 
 @router.get("/department")
 async def get_all_faculties():
-    # -> list[DepartmentResponse]:
     return await DepartmentRepository.find_all()
 
 

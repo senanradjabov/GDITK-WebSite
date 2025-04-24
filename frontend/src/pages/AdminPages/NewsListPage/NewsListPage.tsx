@@ -75,7 +75,7 @@ const NewsListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const addHandler = () => {
-    navigate(adminPaths.newsAdd);
+    navigate(`/admin/${adminPaths.newsList}/add`);
   };
 
   const [dataSource, setDataSource] = useState<DataType[]>([]);

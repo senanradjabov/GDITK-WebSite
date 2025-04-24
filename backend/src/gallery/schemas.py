@@ -5,4 +5,4 @@ class SliderResponse(BaseModel):
     id: int
     image_id: str
     title: str
-    is_first: bool
+    is_first: bool | None = None

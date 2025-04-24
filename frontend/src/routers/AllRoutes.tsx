@@ -108,8 +108,14 @@ const AllRoutes: React.FC = () => {
 
                 {/* News */}
                 <Route path={adminPaths.newsList} element={<NewsListPage />} />
-                <Route path={adminPaths.newsAdd} element={<NewsUpsetPage />} />
-                <Route path={`${adminPaths.newsAdd}/:slugId`} element={<NewsUpsetPage />} />
+                <Route 
+                // path={adminPaths.newsAdd} 
+                path={`${adminPaths.newsList}/add`}
+                element={<NewsUpsetPage />} />
+                <Route 
+                path={`${adminPaths.newsList}/edit/:slugId`}
+                // path={`${adminPaths.newsAdd}/:slugId`} 
+                element={<NewsUpsetPage />} />
                 <Route
                     path={`${adminPaths.newsList}/edit/:slugId`}
                     element={<NewsUpsetPage />}

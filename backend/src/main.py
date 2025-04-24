@@ -27,10 +27,9 @@ async def lifespan(_: FastAPI) -> AsyncIterator[None]:
 app = FastAPI(
     lifespan=lifespan,
     root_path="/api",
-    # docs_url=None,  # отключает Swagger UI (/docs)
-    # redoc_url=None,  # отключает ReDoc (/redoc)
-    # openapi_url=None,  # отключает OpenAPI JSON (/openapi.json)
-    dependencies=[Depends(get_current_admin_user)],
+    docs_url=None,  # отключает Swagger UI (/docs)
+    redoc_url=None,  # отключает ReDoc (/redoc)
+    openapi_url=None,  # отключает OpenAPI JSON (/openapi.json)
 )
 
 origins = [

@@ -10,7 +10,9 @@ services:
     restart: always
     depends_on:
       - db
-
+    volumes:
+      - ./backend/src/static/images:/app/src/static/images
+      - ./backend/src/static/documents:/app/src/static/documents
   db:
     image: postgres:15
     container_name: postgres

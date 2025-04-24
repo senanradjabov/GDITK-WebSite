@@ -27,6 +27,7 @@ const FormContainer = styled.div`
 `;
 
 const AppealPage: React.FC = () => {
+  const [form] = Form.useForm(); // создаём экземпляр формы
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values: {
@@ -40,27 +41,21 @@ const AppealPage: React.FC = () => {
       setLoading(true);
 
       const formData = new FormData();
-
       formData.append("first_name", values.firstName);
       formData.append("last_name", values.lastName);
       formData.append("email", values.email);
       formData.append("phone", values.phone);
       formData.append("message", values.message);
 
-      const request = api.post(`${pathPublic.appeal}/add`, formData, {
+      await api.post(`${pathPublic.appeal}/add`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
 
-      request
-        .then(() => {
-          message.success("Müraciət uğurla göndərildi!");
-        })
-        .catch((error) => {
-          message.error(`Error `, error);
-        });
+      message.success("Müraciət uğurla göndərildi!");
+      form.resetFields(); // очищаем поля формы
     } catch (error) {
       console.log(error);
-      message.error("Müraciət göndərərkən səhv oldu.",);
+      message.error("Müraciət göndərərkən səhv oldu.");
     } finally {
       setLoading(false);
     }
@@ -76,6 +71,7 @@ const AppealPage: React.FC = () => {
         <div className="form-wrapper">
           <h2>Müraciət</h2>
           <Form
+            form={form}
             layout="vertical"
             onFinish={handleSubmit}
             requiredMark="optional"
@@ -120,7 +116,6 @@ const AppealPage: React.FC = () => {
               rules={[
                 { required: true, message: "Əlaqə nömrəsini qeyd edin" },
                 {
-                  // pattern: /^[0-9+()\- ]+$/,
                   pattern:
                     /^(?:\+994\s?|0)(50|51|55|70|77)\s?\d{3}\s?\d{2}\s?\d{2}$/,
                   message: "Əlaqə nömrəsini duz qeyd edin",

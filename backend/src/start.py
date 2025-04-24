@@ -5,7 +5,7 @@ from src.users.repository import UserRepository
 
 
 async def start():
-    if not await UserRepository.find_one_or_none(username="admin"):
+    if not await UserRepository.find_one_or_none(username=settings.ADMIN_LOGIN):
         await UserRepository.insert_data(
             user_name=settings.ADMIN_LOGIN,
             password=settings.ADMIN_PASSWORD,

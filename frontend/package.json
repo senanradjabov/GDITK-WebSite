@@ -1,0 +1,44 @@
+{
+  "name": "frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^9.3.1",
+    "@react-google-maps/api": "^2.20.6",
+    "@types/react-helmet": "^6.1.11",
+    "@types/react-router": "^5.1.20",
+    "@types/swiper": "^5.4.3",
+    "antd": "^5.24.8",
+    "axios": "^1.8.4",
+    "ckeditor5": "^43.3.0",
+    "flickity": "^2.3.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-flickity-component": "^4.0.7",
+    "react-helmet-async": "^2.0.5",
+    "react-router-dom": "^7.5.1",
+    "styled-components": "^6.1.17",
+    "swiper": "^11.2.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@types/node": "^22.14.1",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react-swc": "^3.8.0",
+    "eslint": "^9.22.0",
+    "eslint-plugin-react-hooks": "^5.2.0",
+    "eslint-plugin-react-refresh": "^0.4.19",
+    "globals": "^16.0.0",
+    "typescript": "~5.7.2",
+    "typescript-eslint": "^8.26.1",
+    "vite": "^6.3.1"
+  }
+}

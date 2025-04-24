@@ -1,0 +1,80 @@
+.main-nav-title {
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+}
+
+.main-nav .menus {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  list-style: none;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.main-nav .menu-items {
+  position: relative;
+  font-size: 18px;
+  color: inherit;
+  width: min-content;
+}
+
+.main-nav .menu-items a {
+  display: block;
+  font-size: inherit;
+  text-decoration: none;
+  padding: 0.7rem 1rem;
+  color: inherit;
+  width: min-content;
+  width: 100%;
+}
+
+.main-nav .menu-items button {
+  display: flex;
+  align-items: center;
+  color: inherit;
+  font-size: inherit;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  width: 100%;
+  padding: 0.7rem 1rem;
+}
+.main-nav .dropdown {
+  position: absolute;
+  right: -60px;
+  left: auto;
+  box-shadow: 0 10px 15px -3px #ddd, 0 4px 6px -2px #ddd;
+  width: min-content;
+  padding: 0.5rem 0;
+  list-style: none;
+  background-color: #fff;
+  color: #000;
+  border-radius: 0.5rem;
+  display: none;
+  z-index: 1000;
+}
+.main-nav .dropdown.show {
+  display: block;
+}
+.main-nav .dropdown .dropdown-submenu {
+  position: absolute;
+  left: 100%;
+  top: -7px;
+}
+.main-nav .arrow::after {
+  content: "";
+  display: inline-block;
+  margin-left: 0.28em;
+  vertical-align: 0.09em;
+  border-top: 0.42em solid;
+  border-right: 0.32em solid transparent;
+  border-left: 0.32em solid transparent;
+}
+
+.main-nav button span {
+  margin-left: 5px;
+}

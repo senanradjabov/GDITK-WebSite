@@ -4,7 +4,6 @@ from uuid import uuid4
 
 from fastapi import APIRouter, Depends, File, Form, Query, UploadFile
 from slugify import slugify
-
 from src.config import static_settings
 from src.exceptions import CanNotAddNews, ImageExtensionsIsNotAllow, NewsNotFind
 from src.news.repository import NewsRepository
@@ -134,6 +133,7 @@ async def add_news(
         f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
     )
     slug: str = slugify(title.lower().replace("ə", "e"))
+    slug: str = f"{slug}-{image_id}"
 
     try:
         with open(image_path, "wb+") as file_object:
@@ -180,6 +180,7 @@ async def update_news(
         )
 
     news_slug: str = slugify(title.lower().replace("ə", "e"))
+    news_slug: str = f"{news_slug}-{news.image_id}"
 
     try:
         if image is not None:

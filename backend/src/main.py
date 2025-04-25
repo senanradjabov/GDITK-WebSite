@@ -4,6 +4,7 @@ from contextlib import asynccontextmanager
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import Response
 from slowapi.middleware import SlowAPIMiddleware
 from src.appeal.routers import router as appeal_router
 from src.core.limiter import limiter
@@ -39,8 +40,8 @@ app.add_middleware(SlowAPIMiddleware)
 
 
 origins = [
-    "https://gditk.edu.az",
-    # "http://localhost:5173",
+    # "https://gditk.edu.az",
+    "http://localhost:5173",
 ]
 
 app.add_middleware(
@@ -50,6 +51,51 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+path_public = {
+    "home": "/",
+    "news": "/news",
+    "history": "/history",
+    "management": "/management",
+    "staff": "/staff",
+    "department": "/department",
+    "appeal": "/appeal",
+    "schedule": "/schedule",
+    "documents": "/documents",
+    "search": "/search",
+    "specialties": "/specialties",
+}
+
+
+@app.get("/sitemap.xml")
+async def sitemap():
+    # Генерация XML-карты сайта
+    sitemap_content = """<?xml version="1.0" encoding="UTF-8"?>
+    <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+            xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+            xmlns:xhtml="http://www.w3.org/1999/xhtml"
+            xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+            xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">"""
+
+    base_url = "https://gditk.edu.az"  # Замени на свой домен
+
+    # Создание <url> для каждого маршрута
+    for page, path in path_public.items():
+        sitemap_content += f"""
+        <url>
+            <loc>{base_url}{path}</loc>
+            <lastmod>2025-04-25</lastmod>
+            <changefreq>weekly</changefreq>
+            <priority>0.7</priority>
+        </url>"""
+
+    # Закрытие тега urlset
+    sitemap_content += "</urlset>"
+
+    # Возвращаем XML-контент с нужным заголовком
+    return Response(content=sitemap_content, media_type="application/xml")
+
 
 app.include_router(auth_router)
 app.include_router(gallery_router)

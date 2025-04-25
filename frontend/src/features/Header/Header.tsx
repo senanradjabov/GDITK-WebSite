@@ -74,7 +74,7 @@ const initialMenuItems: NavigationItem[] = [
   { label: "Şöbələr", children: [] },
   { label: "İxtisaslar", link: "/specialties" },
   {
-    label: "AyrI",
+    label: "Sənədlər",
     children: [
       { label: "Dərs cədvəlləri", link: "/schedule" },
       { label: "Sənədlər", link: "/documents" },

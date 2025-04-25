@@ -26,34 +26,33 @@ export const SectionTitle = styled.h2`
 
 // Контейнер для карточек
 export const CardsContainer = styled.div`
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-items: center;
   gap: 50px;
   z-index: 9;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  /* max-width: 1200px; */
+  margin: 20px 0;
   width: 100%;
   padding-inline: 40px;
 
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+
   ${media.sm} {
-    flex-direction: column;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   @media only screen and (max-width: 576px) {
+    grid-template-columns: repeat(1, 1fr);
     margin-top: 0;
-    grid-template-columns: repeat(
-      2,
-      1fr
-    ); /* Меньше карточек в строке на маленьких экранах */
   }
 `;
 
 // Карточка
 export const Card = styled.div`
-  min-height: 350px;
-  width: 350px;
+  min-height: 330px;
+  width: 330px;
   display: flex;
   justify-content: flex-start;
   flex-direction: column;

@@ -10,8 +10,8 @@ export const SliderContainer = styled.div`
 
 // Styled Components для слайдов
 export const Slide = styled.img`
-  width: 80%; /* Ширина каждого слайда */
-  height: 660px; /* Фиксированная высота */
+  width: 64%; /* Ширина каждого слайда */
+  height: 560px; /* Фиксированная высота */
   margin: 0 10px; /* Отступы между слайдами */
   background: "#ddd";
   display: flex;
@@ -23,11 +23,11 @@ export const Slide = styled.img`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Тень */
 
   ${media.lg} {
-    height: 600px;
+    height: 530px;
   }
 
   ${media.md} {
-    height: 500px;
+    height: 480px;
   }
 
   ${media.sm} {

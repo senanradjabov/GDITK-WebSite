@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               <SocialSelf>
                 <Social />
               </SocialSelf>
-              <Address>Göyçay rayonu, Heydər Əliyev 207. Az2023</Address>
+              <Address>Göyçay rayonu. Az2023 Heydər Əliyev 207.</Address>
             </Section>
             <Section>
               <Links>
@@ -39,6 +39,12 @@ const Footer: React.FC = () => {
                   <a href="mailto:example@mail.com">
                     <i className="fa-solid fa-envelope fa-xl"></i>
                     goycayditk@mail.ru
+                  </a>
+                </Link>
+                <Link>
+                  <a href="https://gditk.edu.az">
+                    <i className="fa-brands fa-chrome fa-xl"></i>
+                    www.gditk.edu.az
                   </a>
                 </Link>
                 <Link>

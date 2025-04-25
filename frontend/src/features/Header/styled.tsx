@@ -80,8 +80,9 @@ export const SectionItemTitle = styled.p`
 `;
 
 export const SectionItemMainTitle = styled.p`
-  font-size: 20px;
+  font-size: 22px;
   color: #fff;
+  font-weight: 600;
 `;
 
 export const SearchBlock = styled.div`

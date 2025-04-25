@@ -157,7 +157,7 @@ const Header: React.FC = () => {
 
               <Sections>
                 <SectionItemMainTitle>
-                  Göyçay Dövlət İdarəetmə və Texnologiya Kolleci{" "}
+                  Göyçay Dövlət İdarəetmə və Texnologiya Kolleci
                 </SectionItemMainTitle>
               </Sections>
 

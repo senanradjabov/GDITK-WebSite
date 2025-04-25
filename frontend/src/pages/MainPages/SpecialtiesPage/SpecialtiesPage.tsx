@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { List, Spin, message } from "antd";
 import api from "@/services/request";
 import { Container, PageWrapper } from "@/App.styled";
-import { TitleSelf } from "./styled";
+import { TitleSelf, Descp } from "./styled";
 
 interface Schedule {
     id: number;
@@ -32,6 +32,7 @@ const SpecialtiesPage: React.FC = () => {
         <PageWrapper>
             <Container>
                 <TitleSelf>İxtisaslar</TitleSelf>
+                <Descp>Həm 9 illik, həm də 11 illik təhsil bazasından GDİTK-də təhsil ala bilərsiniz. Kollecimizdə aşağədakı  ixtisaslar tədris olunur</Descp>
                 {loading ? (
                     <Spin size="large" />
                 ) : (

@@ -124,6 +124,8 @@ async def get_department(staff_id: int) -> StaffResponse:
     if staff is None:
         raise FacultyNotFind
 
+    print(staff)
+
     return staff
 
 
@@ -188,6 +190,8 @@ async def update_news(
 ) -> StaffResponse:
     staff: StaffResponse | None = await StaffRepository.find_one_or_none(id=staff_id)
 
+    department_id = None if department_id in (-1, 0) else department_id
+
     if staff is None:
         raise StaffNotFind
 
@@ -224,7 +228,7 @@ async def update_news(
         raise CanNotAddNews
 
     result = await StaffRepository.update_data(staff_id, staff)
-
+    print(result)
     return result
 
 

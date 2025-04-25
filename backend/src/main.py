@@ -5,7 +5,6 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi.middleware import SlowAPIMiddleware
-
 from src.appeal.routers import router as appeal_router
 from src.core.limiter import limiter
 from src.documents.router import router as doc_router
@@ -38,10 +37,8 @@ app.state.limiter = limiter
 app.add_middleware(SlowAPIMiddleware)
 
 origins = [
-    "http://localhost",
-    "http://localhost:3000",
-    "http://localhost:3001",
-    "http://localhost:5173",
+    "https://gditk.edu.az",
+    # "http://localhost:5173",
 ]
 
 app.add_middleware(

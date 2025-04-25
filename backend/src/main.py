@@ -1,3 +1,7 @@
+from starlette.formparsers import MultiPartParser
+
+MultiPartParser.max_part_size = 50 * 1024 * 1024  # 10 MB
+
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
@@ -44,7 +48,17 @@ app.add_middleware(SlowAPIMiddleware)
 async def limit_max_request_size(request: Request, call_next):
     if "Content-Length" in request.headers:
         content_length = int(request.headers["Content-Length"])
-        if content_length > 30 * 1024 * 1024:
+        if content_length > 50 * 1024 * 1024:
+            return JSONResponse({"detail": "Request body too large"}, status_code=413)
+    response = await call_next(request)
+    return response
+
+
+@app.middleware("https")
+async def limit_max_request_size(request: Request, call_next):
+    if "Content-Length" in request.headers:
+        content_length = int(request.headers["Content-Length"])
+        if content_length > 50 * 1024 * 1024:
             return JSONResponse({"detail": "Request body too large"}, status_code=413)
     response = await call_next(request)
     return response

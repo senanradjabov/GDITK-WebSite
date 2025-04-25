@@ -32,13 +32,13 @@ export const Slide = styled.img`
   }
 
   ${media.sm} {
-    width: 80%;
+    width: 85%;
     height: 400px;
   }
 
   ${media.xs} {
     height: 330px;
-    width: 85%;
+    width: 95%;
   }
 
   /* @media (max-width: 768px) {

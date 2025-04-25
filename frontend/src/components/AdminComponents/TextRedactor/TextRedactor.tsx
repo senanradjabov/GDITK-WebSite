@@ -201,6 +201,9 @@ const TextRedactor: React.FC<TextRedactorProps> = ({ value, onChange }) => {
       Underline,
       Undo,
     ],
+    mediaEmbed: {
+      previewsInData: true,
+    },
     fontFamily: {
       supportAllValues: true,
     },

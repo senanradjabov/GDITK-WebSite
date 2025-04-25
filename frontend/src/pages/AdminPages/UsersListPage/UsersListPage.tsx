@@ -41,7 +41,7 @@ const UsersListPage: React.FC = () => {
   const navigate = useNavigate();
 
   const addHandler = () => {
-    navigate(`${adminPaths.user}/add`);
+    navigate(`/admin/${adminPaths.user}/add`);
   };
 
   const [dataSource, setDataSource] = useState<DataType[]>([]);

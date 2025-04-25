@@ -104,7 +104,7 @@ export const Description = styled.div`
   video {
     width: 100%;
     height: auto;
-    max-height: 400px;
+    max-height: 600px;
     display: block;
     margin: 10px auto;
   }

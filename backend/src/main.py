@@ -1,7 +1,3 @@
-from starlette.formparsers import MultiPartParser
-
-MultiPartParser.max_part_size = 50 * 1024 * 1024  # 10 MB
-
 from collections.abc import AsyncIterator
 from contextlib import asynccontextmanager
 
@@ -9,9 +5,6 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from slowapi.middleware import SlowAPIMiddleware
-from starlette.requests import Request
-from starlette.responses import JSONResponse
-
 from src.appeal.routers import router as appeal_router
 from src.core.limiter import limiter
 from src.documents.router import router as doc_router
@@ -41,27 +34,8 @@ app = FastAPI(
 )
 
 app.state.limiter = limiter
+
 app.add_middleware(SlowAPIMiddleware)
-
-
-@app.middleware("http")
-async def limit_max_request_size(request: Request, call_next):
-    if "Content-Length" in request.headers:
-        content_length = int(request.headers["Content-Length"])
-        if content_length > 50 * 1024 * 1024:
-            return JSONResponse({"detail": "Request body too large"}, status_code=413)
-    response = await call_next(request)
-    return response
-
-
-@app.middleware("https")
-async def limit_max_request_size(request: Request, call_next):
-    if "Content-Length" in request.headers:
-        content_length = int(request.headers["Content-Length"])
-        if content_length > 50 * 1024 * 1024:
-            return JSONResponse({"detail": "Request body too large"}, status_code=413)
-    response = await call_next(request)
-    return response
 
 
 origins = [

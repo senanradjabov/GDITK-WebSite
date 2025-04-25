@@ -11,6 +11,14 @@ import {
 } from "@/App.styled";
 import { Helmet } from 'react-helmet-async';
 
+import FlickitySlider from "@/components/MainComponents/FlickitySlider";
+
+interface SliderDataType {
+  id: number;
+  image_id: string;
+  title?: string;
+}
+
 const NewsDetailContainer = styled.div`
   margin: 24px auto;
   padding: 16px;
@@ -57,8 +65,8 @@ const NewsDetailPage: React.FC = () => {
 
   const [newsDetail, setNewsDetail] = useState<NewsDetail | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
+  const [dataSlider, setDataSlider] = useState<SliderDataType[]>([]);
 
-  
 
   useEffect(() => {
     const fetchNewsDetail = async () => {
@@ -66,13 +74,15 @@ const NewsDetailPage: React.FC = () => {
       try {
         const response = await api.get(`/news/default/${slugId}`);
         setNewsDetail(response.data);
+        const response2 = await api.get(`/news/default/images/${slugId}`);
+        setDataSlider(response2.data)
       } catch (error) {
         console.error("Error fetching news detail:", error);
       } finally {
         setLoading(false);
       }
     };
-    
+
     fetchNewsDetail();
   }, [slugId]);
 
@@ -120,6 +130,7 @@ const NewsDetailPage: React.FC = () => {
                 return <NotFoundText>Not Found.</NotFoundText>;
               }
             })()}
+            <FlickitySlider slidesData={dataSlider} />
           </NewsDetailContainer>
         </PageWrapper>
       </Container>

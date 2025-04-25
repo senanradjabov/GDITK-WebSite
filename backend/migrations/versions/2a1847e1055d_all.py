@@ -1,8 +1,8 @@
-"""news
+"""all
 
-Revision ID: 1561177cf435
+Revision ID: 2a1847e1055d
 Revises: 
-Create Date: 2025-04-25 11:43:40.528730
+Create Date: 2025-04-25 13:55:01.536072
 
 """
 from typing import Sequence, Union
@@ -12,7 +12,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision: str = '1561177cf435'
+revision: str = '2a1847e1055d'
 down_revision: Union[str, None] = None
 branch_labels: Union[str, Sequence[str], None] = None
 depends_on: Union[str, Sequence[str], None] = None
@@ -65,9 +65,29 @@ def upgrade() -> None:
     sa.Column('slug', sa.Text(), nullable=False),
     sa.Column('description', sa.Text(), nullable=False),
     sa.Column('image_id', sa.String(length=36), nullable=False),
+    sa.Column('image_1', sa.String(length=36), nullable=True),
+    sa.Column('image_2', sa.String(length=36), nullable=True),
+    sa.Column('image_3', sa.String(length=36), nullable=True),
+    sa.Column('image_4', sa.String(length=36), nullable=True),
+    sa.Column('image_5', sa.String(length=36), nullable=True),
+    sa.Column('image_6', sa.String(length=36), nullable=True),
+    sa.Column('image_7', sa.String(length=36), nullable=True),
+    sa.Column('image_8', sa.String(length=36), nullable=True),
+    sa.Column('image_9', sa.String(length=36), nullable=True),
+    sa.Column('image_10', sa.String(length=36), nullable=True),
     sa.Column('is_draft', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(timezone=True), nullable=False),
     sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('image_1'),
+    sa.UniqueConstraint('image_10'),
+    sa.UniqueConstraint('image_2'),
+    sa.UniqueConstraint('image_3'),
+    sa.UniqueConstraint('image_4'),
+    sa.UniqueConstraint('image_5'),
+    sa.UniqueConstraint('image_6'),
+    sa.UniqueConstraint('image_7'),
+    sa.UniqueConstraint('image_8'),
+    sa.UniqueConstraint('image_9'),
     sa.UniqueConstraint('image_id'),
     sa.UniqueConstraint('slug')
     )

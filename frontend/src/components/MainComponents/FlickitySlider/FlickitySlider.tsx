@@ -7,7 +7,7 @@ import "flickity/dist/flickity.min.css";
 interface SliderDataType {
   id: number;
   image_id: string;
-  title: string;
+  title?: string;
 }
 
 interface MyComponentProps {

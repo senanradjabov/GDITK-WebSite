@@ -14,7 +14,6 @@ from src.exceptions import (
 )
 from src.faculty.repository import DepartmentRepository, StaffRepository
 from src.faculty.schemas import (
-    DepartmentFullResponse,
     DepartmentResponse,
     DepartmentSchema,
     StaffResponse,

@@ -85,13 +85,17 @@ const NewsForm: React.FC = () => {
 
     const request = slugId
       ? api.put(updateUrl(slugId), formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
-        })
+        maxBodyLength: 10 * 1024 * 1024, // ограничение на 10MB для запроса
+        maxContentLength: 20 * 1024 * 1024, // ограничение на 20MB для ответа
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      })
       : api.post(addUrl, formData, {
-          headers: { "Content-Type": "multipart/form-data" },
-          withCredentials: true,
-        });
+        maxBodyLength: 10 * 1024 * 1024, // ограничение на 10MB для запроса
+        maxContentLength: 20 * 1024 * 1024, // ограничение на 20MB для ответа
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      });
 
     request
       .then(() => {

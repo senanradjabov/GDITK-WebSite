@@ -1,4 +1,4 @@
-from sqlalchemy import ForeignKey, String, Text, Boolean
+from sqlalchemy import Boolean, ForeignKey, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 from src.database import Base
 
@@ -16,10 +16,13 @@ class Department(Base):
     )
 
     # Relationships
-    staff: Mapped[list["Staff"]] = relationship("Staff", back_populates="department",
-                                                foreign_keys="[Staff.department_id]")
+    staff: Mapped[list["Staff"]] = relationship(
+        "Staff", back_populates="department", foreign_keys="[Staff.department_id]"
+    )
     head_of_department: Mapped["Staff"] = relationship(
-        "Staff", back_populates="department", foreign_keys=[head_of_department_id],
+        "Staff",
+        back_populates="department",
+        foreign_keys=[head_of_department_id],
     )
 
 
@@ -36,16 +39,16 @@ class Staff(Base):
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
 
     department_id: Mapped[int | None] = mapped_column(
-        ForeignKey("department.id", ondelete="SET NULL", use_alter=True), nullable=True,
+        ForeignKey("department.id", ondelete="SET NULL", use_alter=True),
+        nullable=True,
     )
 
     # Relationships
-    department: Mapped["Department"] = relationship("Department",
-                                                    back_populates="staff",
-                                                    foreign_keys="[Staff.department_id]")
+    department: Mapped["Department"] = relationship(
+        "Department", back_populates="staff", foreign_keys="[Staff.department_id]"
+    )
 
-    manager: Mapped[list["Manager"]] = relationship("Manager",
-                                                    back_populates="staff")
+    manager: Mapped[list["Manager"]] = relationship("Manager", back_populates="staff")
 
 
 class Manager(Base):
@@ -56,7 +59,9 @@ class Manager(Base):
     is_leader: Mapped[bool] = mapped_column(Boolean, default=False)
 
     staff_id: Mapped[int] = mapped_column(
-        ForeignKey('staff.id', ondelete="CASCADE"), nullable=False
+        ForeignKey("staff.id", ondelete="CASCADE"), nullable=False
     )
 
-    staff: Mapped["Staff"] = relationship("Staff", foreign_keys=[staff_id], back_populates="manager")
+    staff: Mapped["Staff"] = relationship(
+        "Staff", foreign_keys=[staff_id], back_populates="manager"
+    )

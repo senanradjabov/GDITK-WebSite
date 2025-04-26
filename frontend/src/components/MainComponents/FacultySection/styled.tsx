@@ -18,10 +18,6 @@ export const SectionTitle = styled.h2`
   margin: 20px 20px;
   text-align: center;
   font-size: 32px;
-
-  @media only screen and (max-width: 576px) {
-    margin-bottom: 0;
-  }
 `;
 
 // Контейнер для карточек

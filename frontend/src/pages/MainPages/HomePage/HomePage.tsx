@@ -160,7 +160,6 @@ const HomePage: React.FC = () => {
       </Helmet>
       <FlickitySlider slidesData={dataSlider} />
       <Container>
-        <FacultySection departmentData={dataDepartment} />
         <SectionTitle>Xəbərlər</SectionTitle>
         <AllNewsTitle>
           <Link to={pathPublic.news}>Bütün xəbərlər →</Link>
@@ -186,6 +185,7 @@ const HomePage: React.FC = () => {
             </Card>
           ))}
         </NewsGrid>
+        <FacultySection departmentData={dataDepartment} />
         <GoogleMapComponent />
         <InfiniteCarousel />
       </Container>

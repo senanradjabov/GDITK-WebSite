@@ -117,6 +117,10 @@ const Header: React.FC = () => {
         <Link to={pathPublic.home}>
           <Logo src={LogoImage} />
         </Link>
+        <SectionItemMainTitle>
+          Göyçay Dövlət İdarəetmə <br/>və Texnologiya Kolleci
+        </SectionItemMainTitle>
+
         <MobileMenuBtns>
           <SearchBlock onClick={() => setSearchVisible(true)}>
             <i className="fas fa-search" style={{ color: "#000" }}></i>

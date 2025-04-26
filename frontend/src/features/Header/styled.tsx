@@ -28,6 +28,10 @@ export const MobileHeaderSelf = styled.header`
     justify-content: space-between;
     align-items: center;
   }
+
+  ${media.sm} {
+    padding: 10px;
+  }
 `;
 
 // Top block
@@ -46,8 +50,11 @@ export const Logo = styled.img`
   ${media.lg} {
     height: 100px;
   }
-  ${media.lg} {
+  ${media.md} {
     height: 90px;
+  }
+  ${media.xs} {
+    height: 70px;
   }
 `;
 
@@ -83,6 +90,10 @@ export const SectionItemMainTitle = styled.p`
   font-size: 22px;
   color: #fff;
   font-weight: 600;
+
+  ${media.xs} {
+    font-size: 16px;
+  }
 `;
 
 export const SearchBlock = styled.div`

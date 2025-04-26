@@ -77,7 +77,7 @@ const DepartmentListPage: React.FC = () => {
   return (
     <>
       <HeaderSelf>
-        <Title>Şöbələr</Title>
+        <Title>Şöbə və bölmələr</Title>
         <Button
           type="primary"
           icon={<FileAddOutlined />}

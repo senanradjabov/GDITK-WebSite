@@ -236,7 +236,7 @@ const StaffUpsetPage: React.FC = () => {
 
         <Form.Item
           name="department_id"
-          label="Şöbələr"
+          label="Şöbə və bölmələr"
           rules={[{ required: true, message: "Выберите отдел" }]}
         >
           <Select placeholder="Выберите" loading={loading}>

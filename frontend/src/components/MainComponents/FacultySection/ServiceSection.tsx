@@ -31,7 +31,7 @@ interface MyComponentProps {
 const FacultySection: React.FC<MyComponentProps> = ({ departmentData }) => {
   return (
     <ServiceSectionSelf>
-      <SectionTitle>Şöbələr</SectionTitle>
+      <SectionTitle>Şöbə və bölmələr</SectionTitle>
 
       <CardsContainer>
         {departmentData.map((department) => (

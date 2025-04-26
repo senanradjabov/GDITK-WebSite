@@ -71,7 +71,7 @@ const initialMenuItems: NavigationItem[] = [
   { label: "İdarəetmə", link: "/management" },
   { label: "Xəbərlər", link: "/news" },
   { label: "Kollecin Tarixi", link: "/history" },
-  { label: "Şöbələr", children: [] },
+  { label: "Şöbə və bölmələr", children: [] },
   { label: "İxtisaslar", link: "/specialties" },
   {
     label: "Sənədlər",

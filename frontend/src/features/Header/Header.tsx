@@ -142,7 +142,7 @@ const Header: React.FC = () => {
             <Link to={pathPublic.appeal}>
               <SectionItem>
                 <i className="fa-solid fa-file-signature" aria-hidden></i>
-                <SectionItemTitle>Müraciət</SectionItemTitle>
+                <SectionItemTitle>Direktora müraciət</SectionItemTitle>
               </SectionItem>
             </Link>
           </FooterLinks>
@@ -171,7 +171,7 @@ const Header: React.FC = () => {
                 <Link to={pathPublic.appeal}>
                   <SectionItem>
                     <i className="fa-solid fa-file-signature" aria-hidden></i>
-                    <SectionItemTitle>Müraciət</SectionItemTitle>
+                    <SectionItemTitle>Direktora müraciət</SectionItemTitle>
                   </SectionItem>
                 </Link>
 

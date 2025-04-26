@@ -65,12 +65,12 @@ const AppealPage: React.FC = () => {
   return (
     <>
       <Helmet>
-        <title>Müraciət</title>
+        <title>Direktora müraciət</title>
       </Helmet>
 
       <FormContainer>
         <div className="form-wrapper">
-          <h2>Müraciət</h2>
+          <h2>Direktora müraciət</h2>
 
           <div style={{ marginBottom: "16px", color: "#d48806", fontWeight: "500" }}>
             Qeyd: Eyni şəxs yalnız 10 dəqiqədən bir müraciət edə bilər.

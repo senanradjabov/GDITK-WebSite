@@ -51,7 +51,7 @@ const NewsPage: React.FC = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalItems, setTotalItems] = useState<number>(0);
-  const pageSize = 20;
+  const pageSize = 12;
 
   const navigate = useNavigate();
 

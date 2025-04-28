@@ -1,9 +1,11 @@
-from datetime import UTC, datetime
+from datetime import datetime, timedelta, timezone
 
 from sqlalchemy import Boolean, DateTime, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column
 
 from src.database import Base
+
+UTC_PLUS_4 = timezone(timedelta(hours=4))
 
 
 class News(Base):
@@ -47,5 +49,7 @@ class News(Base):
     is_draft: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False)
 
     created_at: Mapped[datetime] = mapped_column(
-        DateTime(timezone=True), default=datetime.now(UTC), nullable=False
+        DateTime(timezone=True),
+        default=lambda: datetime.now(UTC_PLUS_4),
+        nullable=False,
     )

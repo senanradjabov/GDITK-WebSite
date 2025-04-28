@@ -105,7 +105,7 @@ async def get_news_by_id(slug: str) -> NewsSchema:
 @router.get("/default/images/{slug}")
 async def get_news_by_id(slug: str):
     news = await NewsRepository.get_images(slug=slug)
-    print(news)
+
     images = []
     current_id = 1
     for field in [

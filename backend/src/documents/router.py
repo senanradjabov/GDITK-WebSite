@@ -54,7 +54,7 @@ async def get_document_by_id(slug: str):
 
     if not os.path.exists(file_path):
         raise HTTPException(status_code=404, detail="Файл отсутствует на сервере")
-    print(file_path)
+
     return FileResponse(file_path, filename=f"{document.title}.{document.extension}")
 
 

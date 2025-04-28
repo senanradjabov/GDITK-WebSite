@@ -21,6 +21,7 @@ class DepartmentSchema(BaseModel):
     description: str | None
     head_of_department_id: int | None
     slug: str
+    order: int
 
 
 class DepartmentResponse(DepartmentSchema):

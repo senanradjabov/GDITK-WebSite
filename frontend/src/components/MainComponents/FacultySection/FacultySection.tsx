@@ -48,10 +48,10 @@ const FacultySection: React.FC<MyComponentProps> = ({ departmentData }) => {
                   {department.head_of_department.first_name}
                 </p>
               </CardContent>
-              <CardContent>
+              {/* <CardContent>
                 <p>{department.head_of_department.email}</p>
                 <p>{department.head_of_department.phone_number}</p>
-              </CardContent>
+              </CardContent> */}
             </Card>
           </Link>
         ))}

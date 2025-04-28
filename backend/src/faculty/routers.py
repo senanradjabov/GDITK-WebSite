@@ -45,6 +45,7 @@ async def adding_faculty(
     name: Annotated[str, Form()],
     head_of_department_id: Annotated[int, Form()],
     description: Annotated[str, Form()],
+    order: Annotated[int, Form()],
     user: Annotated[UserBase, Depends(get_current_moder_user)],
 ) -> DepartmentResponse:
     slug: str = slugify(name.lower().replace("ə", "e"))
@@ -54,6 +55,7 @@ async def adding_faculty(
         description=description,
         head_of_department_id=head_of_department_id,
         slug=slug,
+        order=order,
     )
 
     return department
@@ -65,6 +67,7 @@ async def update_news(
     slug: str,
     name: Annotated[str, Form()],
     description: Annotated[str, Form()],
+    order: Annotated[int, Form()],
     head_of_department_id: Annotated[int, Form()],
 ):
     department: DepartmentResponse | None = await DepartmentRepository.find_one_or_none(
@@ -82,11 +85,10 @@ async def update_news(
             description=description,
             head_of_department_id=head_of_department_id,
             slug=new_slug,
+            order=order,
         )
 
     except Exception as e:
-        print(e)
-
         raise CanNotAddNews
 
     result = await DepartmentRepository.update_data(slug, department)
@@ -122,8 +124,6 @@ async def get_department(staff_id: int) -> StaffResponse:
 
     if staff is None:
         raise FacultyNotFind
-
-    print(staff)
 
     return staff
 

@@ -121,7 +121,7 @@ const Layout: React.FC = () => {
             <NavLink to={adminPaths.manage}>
               <NavigationItem>
                 <FileTextOutlined size={24} />
-                <NavigationItemTitle>İdarəetmə</NavigationItemTitle>
+                <NavigationItemTitle>Rəhbərlik</NavigationItemTitle>
               </NavigationItem>
             </NavLink>
             <NavLink to={adminPaths.history}>

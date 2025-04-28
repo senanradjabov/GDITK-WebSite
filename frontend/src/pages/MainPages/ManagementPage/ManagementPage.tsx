@@ -127,7 +127,7 @@ const ManagementPage: React.FC = () => {
 
   return (
     <ManagementContainer>
-      <Title>İdarəetmə</Title>
+      <Title>Rəhbərlik</Title>
       {loading ? (
         <Spin size="large" style={{ display: "block", margin: "auto" }} />
       ) : (

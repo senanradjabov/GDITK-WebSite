@@ -23,14 +23,17 @@ export const SectionTitle = styled.h2`
 // Контейнер для карточек
 export const CardsContainer = styled.div`
   display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  /* display: flex; */
+  /* flex: 0 0 50%; */
   justify-content: center;
-  gap: 50px;
+  justify-items: center;
+  align-items: center;
+  gap: 30px;
   z-index: 9;
   margin: 20px 0;
   width: 100%;
   padding-inline: 40px;
-
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -47,12 +50,12 @@ export const CardsContainer = styled.div`
 
 // Карточка
 export const Card = styled.div`
-  min-height: 330px;
-  width: 330px;
+  min-height: 350px;
+  width: 350px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-around;
   flex-direction: column;
-  padding: 0 6%;
+  padding: 0 30px;
   background: ${colors.primary};
   font-style: normal;
   /* text-decoration: none; */

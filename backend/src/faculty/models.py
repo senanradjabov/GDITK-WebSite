@@ -1,5 +1,6 @@
-from sqlalchemy import Boolean, ForeignKey, String, Text
+from sqlalchemy import Boolean, ForeignKey, Integer, String, Text
 from sqlalchemy.orm import Mapped, mapped_column, relationship
+
 from src.database import Base
 
 
@@ -10,6 +11,7 @@ class Department(Base):
     name: Mapped[str] = mapped_column(String(256), nullable=False)
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     slug: Mapped[str] = mapped_column(String(300), nullable=False, unique=True)
+    order: Mapped[int] = mapped_column(Integer, nullable=False, default=0, index=True)
 
     head_of_department_id: Mapped[int | None] = mapped_column(
         ForeignKey("staff.id", ondelete="SET NULL"), nullable=True

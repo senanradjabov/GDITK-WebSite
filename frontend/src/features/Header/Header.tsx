@@ -68,7 +68,7 @@ interface DepartmentData {
 
 const initialMenuItems: NavigationItem[] = [
   { label: "Ana səhifə", link: "/" },
-  { label: "İdarəetmə", link: "/management" },
+  { label: "Rəhbərlik", link: "/management" },
   { label: "Xəbərlər", link: "/news" },
   { label: "Kollecin Tarixi", link: "/history" },
   { label: "Şöbə və bölmələr", children: [] },

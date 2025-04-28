@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import { Form, Input, Button, message, Flex, Select } from "antd";
+import { Form, Input, Button, message, Flex, Select, InputNumber } from "antd";
 
 import api from "@/services/request";
 import TextRedactor from "@/components/AdminComponents/TextRedactor";
@@ -21,6 +21,7 @@ interface DepartmentData {
   slug?: string;
   description: string;
   head_of_department_id: number;
+  order: number;
 }
 
 const formItemLayout = {
@@ -50,12 +51,13 @@ const DepartmentUpsetPage: React.FC = () => {
       api
         .get(getUrl(slugId), { withCredentials: true })
         .then((response) => {
-          const { name, description, head_of_department_id } = response.data;
+          const { name, description, head_of_department_id, order } = response.data;
           setDesc(description);
 
           form.setFieldsValue({
             name: name,
             head_of_department_id: head_of_department_id,
+            order: order
           });
         })
         .catch((error) => {
@@ -84,6 +86,7 @@ const DepartmentUpsetPage: React.FC = () => {
     const formData = new FormData();
 
     formData.append("name", values.name);
+    formData.append("order", String(values.order));
     formData.append("description", desc);
     formData.append(
       "head_of_department_id",
@@ -92,29 +95,30 @@ const DepartmentUpsetPage: React.FC = () => {
 
     const request = slugId
       ? api.put(updateUrl(slugId), formData, {
+        headers: { "Content-Type": "multipart/form-data" },
+        withCredentials: true,
+      })
+      : api.post(
+        addUrl,
+        {
+          name: values.name,
+          description: desc,
+          head_of_department_id: values.head_of_department_id, // Отправляется как число
+          order: values.order
+        },
+        {
           headers: { "Content-Type": "multipart/form-data" },
           withCredentials: true,
-        })
-      : api.post(
-          addUrl,
-          {
-            name: values.name,
-            description: desc,
-            head_of_department_id: values.head_of_department_id, // Отправляется как число
-          },
-          {
-            headers: { "Content-Type": "multipart/form-data" },
-            withCredentials: true,
-          }
-        );
+        }
+      );
 
     request
       .then(() => {
-        message.success("News saved successfully!");
+        message.success("Saved successfully!");
         navigate(`/admin/${adminPaths.department}`);
       })
       .catch((error) => {
-        message.error(`Failed to save news. \n${error}`);
+        message.error(`Failed to save. \n${error}`);
       })
       .finally(() => {
         setLoading(false);
@@ -134,7 +138,7 @@ const DepartmentUpsetPage: React.FC = () => {
           navigate(`/admin/${adminPaths.department}`);
         })
         .catch((error) => {
-          message.error(`Failed to delete news. \n${error}`);
+          message.error(`Failed to delete. \n${error}`);
         })
         .finally(() => {
           setLoading(false);
@@ -159,6 +163,15 @@ const DepartmentUpsetPage: React.FC = () => {
         >
           <Input placeholder="Enter name" />
         </Form.Item>
+
+        <Form.Item
+          label="Order"
+          name="order"
+          rules={[{ required: true, message: "Please enter the order number" }]}
+        >
+          <InputNumber placeholder="Enter order number" style={{ width: '100%' }} />
+        </Form.Item>
+
 
         <Form.Item label="Təsvir" name="description">
           <NoneDiv>{desc}</NoneDiv>

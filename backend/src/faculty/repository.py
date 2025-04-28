@@ -1,6 +1,7 @@
 from sqlalchemy import insert, select, update
 from sqlalchemy.future import select as f_select
 from sqlalchemy.orm import joinedload, selectinload
+
 from src.database import async_session_factory
 from src.exceptions import DepartmentNotFind, StaffNotFind
 from src.faculty.models import Department, Staff
@@ -86,9 +87,11 @@ class DepartmentRepository(BaseRepository):
     async def find_all(cls, **filter_by):
         async with async_session_factory() as session:
             result = await session.execute(
-                f_select(cls.model).options(
+                f_select(cls.model)
+                .options(
                     joinedload(cls.model.head_of_department),
                 )
+                .order_by(cls.model.order.asc())
             )
             departments: list[DepartmentFullResponse] = result.scalars().unique().all()
 
@@ -98,6 +101,7 @@ class DepartmentRepository(BaseRepository):
                     "id": department.id,
                     "name": department.name,
                     # "description": department.description,
+                    "order": department.order,
                     "slug": department.slug,
                     "head_of_department": (
                         {
@@ -122,6 +126,7 @@ class DepartmentRepository(BaseRepository):
         description: str,
         head_of_department_id: int,
         slug: str,
+        order: int,
     ):
         async with async_session_factory() as session:
             check_staff_id: StaffSchema | None = await StaffRepository.find_one_or_none(
@@ -138,6 +143,7 @@ class DepartmentRepository(BaseRepository):
                     description=description,
                     head_of_department_id=head_of_department_id,
                     slug=slug,
+                    order=order,
                 )
                 .returning(cls.model.__table__.columns)
             )
@@ -157,6 +163,7 @@ class DepartmentRepository(BaseRepository):
                     description=model_data.description,
                     head_of_department_id=model_data.head_of_department_id,
                     slug=model_data.slug,
+                    order=model_data.order,
                 )
                 .filter_by(slug=slug)
                 .returning(cls.model.__table__.columns)

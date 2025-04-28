@@ -40,8 +40,9 @@ app.add_middleware(SlowAPIMiddleware)
 
 
 origins = [
-    # "https://gditk.edu.az",
-    "http://localhost:5173",
+    "https://gditk.edu.az",
+    "https://www.gditk.edu.az",
+    # "http://localhost:5173",
 ]
 
 app.add_middleware(

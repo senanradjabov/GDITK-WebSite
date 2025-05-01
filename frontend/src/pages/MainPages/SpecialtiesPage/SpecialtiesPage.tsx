@@ -32,7 +32,7 @@ const SpecialtiesPage: React.FC = () => {
         <PageWrapper>
             <Container>
                 <TitleSelf>İxtisaslar</TitleSelf>
-                <Descp>Həm 9 illik, həm də 11 illik təhsil bazasından GDİTK-də təhsil ala bilərsiniz. Kollecimizdə aşağıdakı ixtisaslar tədri olunur</Descp>
+                <Descp>Həm 9 illik, həm də 11 illik təhsil bazasından GDİTK-də təhsil ala bilərsiniz. Kollecimizdə aşağıdakı ixtisaslar tədris olunur</Descp>
                 {loading ? (
                     <Spin size="large" />
                 ) : (

@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               <SocialSelf>
                 <Social />
               </SocialSelf>
-              <Address>Göyçay rayonu. Az2023 Heydər Əliyev 207.</Address>
+              <Address>Göyçay rayonu Az2023 Heydər Əliyev 207</Address>
             </Section>
             <Section>
               <Links>

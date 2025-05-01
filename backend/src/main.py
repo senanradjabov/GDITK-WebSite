@@ -79,7 +79,7 @@ async def sitemap():
             xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
             xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">"""
 
-    base_url = "https://gditk.edu.az"  # Замени на свой домен
+    base_url = "https://gditk.edu.az"
 
     # Создание <url> для каждого маршрута
     for page, path in path_public.items():

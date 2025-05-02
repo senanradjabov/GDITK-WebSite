@@ -40,16 +40,14 @@ async def add_new_slid_for_main_page_slider(
     user: Annotated[UserBase, Depends(get_current_moder_user)],
     is_first: Annotated[bool, Form()] = False,
 ) -> SliderResponse:
-    image_extensions = image.filename.split(".")[-1]
+    image_extensions = image.filename.lower().split(".")[-1]
 
     if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
         raise ImageExtensionsIsNotAllow
 
     image_id: str = str(uuid4())
 
-    image_path: str = (
-        f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    image_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         with open(image_path, "wb+") as file_object:
@@ -69,9 +67,7 @@ async def delete_slid_for_main_page_slider(
 ):
     await MainPageSliderRepository.delete_data(image_id=image_id)
 
-    file_path: str = (
-        f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    file_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         remove_file(file_path)
@@ -102,14 +98,12 @@ async def delete_slid_for_main_page_slider(
         raise SliderNotFind
 
     if image is not None:
-        image_extensions = image.filename.split(".")[-1]
+        image_extensions = image.filename.lower().split(".")[-1]
 
         if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
             raise ImageExtensionsIsNotAllow
 
-        image_path: str = (
-            f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-        )
+        image_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
         try:
             with open(image_path, "wb+") as file_object:
@@ -154,16 +148,14 @@ async def add_new_slid_for_main_page_slider(
     title: Annotated[str, Form()],
     user: Annotated[UserBase, Depends(get_current_moder_user)],
 ) -> SliderResponse:
-    image_extensions = image.filename.split(".")[-1]
+    image_extensions = image.filename.lower().split(".")[-1]
 
     if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
         raise ImageExtensionsIsNotAllow
 
     image_id: str = str(uuid4())
 
-    image_path: str = (
-        f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    image_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         with open(image_path, "wb+") as file_object:
@@ -181,9 +173,7 @@ async def delete_slid_for_main_page_slider(
 ):
     await CooperationRepository.delete_data(image_id=image_id)
 
-    file_path: str = (
-        f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    file_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         remove_file(file_path)
@@ -213,14 +203,12 @@ async def delete_slid_for_main_page_slider(
         raise SliderNotFind
 
     if image is not None:
-        image_extensions = image.filename.split(".")[-1]
+        image_extensions = image.filename.lower().split(".")[-1]
 
         if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
             raise ImageExtensionsIsNotAllow
 
-        image_path: str = (
-            f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-        )
+        image_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
         try:
             with open(image_path, "wb+") as file_object:

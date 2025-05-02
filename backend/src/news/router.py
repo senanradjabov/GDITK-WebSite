@@ -160,7 +160,7 @@ async def add_news(
     is_draft: Annotated[bool, Form()] = False,
 ):
     # Checking for the correct image extension
-    image_extensions: str = image.filename.split(".")[-1]
+    image_extensions: str = image.filename.lower().split(".")[-1]
 
     if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
         raise ImageExtensionsIsNotAllow
@@ -177,9 +177,7 @@ async def add_news(
     image_id_9: str = str(uuid4())
     image_id_10: str = str(uuid4())
 
-    image_path: str = (
-        f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    image_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
     slug: str = slugify(title.lower().replace("ə", "e"))
     slug: str = f"{slug}-{image_id}"
 
@@ -189,90 +187,70 @@ async def add_news(
             file_object.write(content)
 
         if image_1 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_1}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_1}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_1.read()
                 file_object.write(content)
 
         if image_2 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_2}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_2}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_2.read()
                 file_object.write(content)
 
         if image_3 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_3}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_3}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_3.read()
                 file_object.write(content)
 
         if image_4 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_4}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_4}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_4.read()
                 file_object.write(content)
 
         if image_5 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_5}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_5}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_5.read()
                 file_object.write(content)
 
         if image_6 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_6}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_6}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_6.read()
                 file_object.write(content)
 
         if image_7 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_7}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_7}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_7.read()
                 file_object.write(content)
 
         if image_8 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_8}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_8}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_8.read()
                 file_object.write(content)
 
         if image_9 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_9}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_9}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_9.read()
                 file_object.write(content)
 
         if image_10 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{image_id_10}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{image_id_10}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_10.read()
@@ -344,158 +322,116 @@ async def update_news(
         if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
             raise ImageExtensionsIsNotAllow
 
-        image_path: str = (
-            f"{static_settings.IMAGES_PATH}/{news.image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-        )
+        image_path: str = f"{static_settings.IMAGES_PATH}/{news.image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
     try:
         if image_1 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_1}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_1}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_1.read()
                 file_object.write(content)
 
         if image_2 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_2}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_2}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_2.read()
                 file_object.write(content)
 
         if image_3 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_3}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_3}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_3.read()
                 file_object.write(content)
 
         if image_4 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_4}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_4}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_4.read()
                 file_object.write(content)
 
         if image_5 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_5}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_5}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_5.read()
                 file_object.write(content)
 
         if image_6 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_6}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_6}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_6.read()
                 file_object.write(content)
 
         if image_7 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_7}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_7}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_7.read()
                 file_object.write(content)
 
         if image_8 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_8}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_8}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_8.read()
                 file_object.write(content)
 
         if image_9 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_9}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_9}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_9.read()
                 file_object.write(content)
 
         if image_10 is not None:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_10}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_10}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(path_c, "wb+") as file_object:
                 content = await image_10.read()
                 file_object.write(content)
 
         if del_image_1 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_1}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_1}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_2 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_2}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_2}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_3 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_3}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_3}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_4 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_4}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_4}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_5 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_5}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_5}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_6 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_6}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_6}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_7 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_7}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_7}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_8 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_8}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_8}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_9 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_9}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_9}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
 
         if del_image_10 is True:
-            path_c: str = (
-                f"{static_settings.IMAGES_PATH}/{news.image_10}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            path_c: str = f"{static_settings.IMAGES_PATH}/{news.image_10}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(path_c)
     except Exception as e:
         pass
@@ -544,18 +480,14 @@ async def delete_slid_for_main_page_slider(
 ):
     news: NewsSchema = await NewsRepository.find_one_or_none(slug=slug)
 
-    file_path: str = (
-        f"{static_settings.IMAGES_PATH}/{news.image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    file_path: str = f"{static_settings.IMAGES_PATH}/{news.image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         await NewsRepository.delete_data(slug=slug)
         remove_file(file_path)
 
         for i in range(1, 11):
-            file_path: str = (
-                f"{static_settings.IMAGES_PATH}/{getattr(news, f'image_{i}')}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            file_path: str = f"{static_settings.IMAGES_PATH}/{getattr(news, f'image_{i}')}.{static_settings.BASE_IMAGE_EXTENSION}"
             remove_file(file_path)
 
         print(f"File {file_path} deleted successfully.")

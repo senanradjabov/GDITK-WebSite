@@ -142,16 +142,14 @@ async def adding_faculty(
 ) -> StaffResponse:
     department_id = None if department_id in (-1, 0) else department_id
 
-    image_extensions = image.filename.split(".")[-1]
+    image_extensions = image.filename.lower().split(".")[-1]
 
     if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
         raise ImageExtensionsIsNotAllow
 
     image_id: str = str(uuid4())
 
-    image_path: str = (
-        f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    image_path: str = f"{static_settings.IMAGES_PATH}/{image_id}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         with open(image_path, "wb+") as file_object:
@@ -197,14 +195,12 @@ async def update_news(
     try:
         if image is not None:
             # Checking for the correct image extension
-            image_extensions: str = image.filename.split(".")[-1]
+            image_extensions: str = image.filename.lower().split(".")[-1]
 
             if image_extensions not in static_settings.ALLOW_IMAGE_EXTENSIONS:
                 raise ImageExtensionsIsNotAllow
 
-            image_path: str = (
-                f"{static_settings.IMAGES_PATH}/{staff.image}.{static_settings.BASE_IMAGE_EXTENSION}"
-            )
+            image_path: str = f"{static_settings.IMAGES_PATH}/{staff.image}.{static_settings.BASE_IMAGE_EXTENSION}"
 
             with open(image_path, "wb+") as file_object:
                 content = await image.read()
@@ -242,9 +238,7 @@ async def delete_slid_for_main_page_slider(
 
     await StaffRepository.delete_data(id=staff_id)
 
-    file_path: str = (
-        f"{static_settings.IMAGES_PATH}/{staff.image}.{static_settings.BASE_IMAGE_EXTENSION}"
-    )
+    file_path: str = f"{static_settings.IMAGES_PATH}/{staff.image}.{static_settings.BASE_IMAGE_EXTENSION}"
 
     try:
         remove_file(file_path)
